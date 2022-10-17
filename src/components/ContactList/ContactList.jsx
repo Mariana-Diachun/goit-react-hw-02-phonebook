@@ -1,3 +1,17 @@
-// export const ContactList = ({ contacts }) => {
-//   return <ul>{contacts.map(({ id, name, number }) => {})}</ul>;
-// };
+import { ContactItem } from 'components/ContactItem/ContactItem';
+
+export const ContactList = ({ contacts }) => {
+  return (
+    <ul>
+      {contacts().map(contact => {
+        return (
+          <ContactItem
+            key={contact.id}
+            name={contact.name}
+            number={contact.number}
+          />
+        );
+      })}
+    </ul>
+  );
+};
