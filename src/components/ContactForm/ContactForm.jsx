@@ -10,17 +10,12 @@ const initialValues = {
 const nameID = nanoid();
 const numberID = nanoid();
 
-export const ContactForm = () => {
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
-  };
-
+export const ContactForm = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={schema}
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
       <Form autoComplete="off">
         <label htmlFor={nameID}>

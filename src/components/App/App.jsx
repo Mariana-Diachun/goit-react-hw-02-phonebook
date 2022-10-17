@@ -1,7 +1,9 @@
 import { Component } from 'react';
-// import { nanoid } from 'nanoid';
+import Notiflix from 'notiflix';
 import { ContactForm } from 'components/ContactForm/ContactForm';
-// import { ContactList } from 'components/ContactList/ContactList';
+import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
@@ -14,26 +16,38 @@ export class App extends Component {
     filter: '',
   };
 
-  // formSubmitHandler = data => {
-  //   const contact = {
-  //     id: nanoid(),
-  //     name: data.name,
-  //     number: data.number,
-  //   };
+  contactsHandleSubmit = (values, { resetForm }) => {
+    const { name, number } = values;
+    const nameToLowerCase = name.toLowerCase();
+    const nameTransform = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === nameToLowerCase
+    );
+    const contact = { id: nanoid(), name, number };
+    // console.log(contact);
+    if (!nameTransform) {
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts],
+      }));
+    } else {
+      return Notiflix.Notify.failure(`${contact.name} is already in contacts`);
+    }
 
-  //   this.setState(prevState => ({
-  //     contacts: [contact, ...prevState.contacts],
-  //   }));
-  // };
+    resetForm();
+  };
+  handleFilter = event => {
+    this.setState({
+      filter: event.currentTarget.value,
+    });
+  };
 
   render() {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm />
-        {/* <Form onSubmit={this.formSubmitHandler} /> */}
-        {/* <h2>Contacts</h2> */}
-        {/* <ContactList contacts={this.state.contacts} /> */}
+        <ContactForm onSubmit={this.contactsHandleSubmit} />
+        <h2>Contacts</h2>
+        <Filter filter={this.state.filter} onFilter={this.handleFilter} />
+        <ContactList contacts={this.state.contacts} />
       </div>
     );
   }
