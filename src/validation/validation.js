@@ -16,7 +16,7 @@ const schema = yup.object().shape({
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
       'Phone number must be digits'
     )
-    .min(9, 'Format 000-00-00')
+    .min(9, 'Please use this format 000-00-00')
     .required('Please, enter your phone number!'),
 });
 

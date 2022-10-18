@@ -6,11 +6,13 @@ export const Filter = ({ filter, onFilter }) => {
     <div>
       <label htmlFor={inputID}>
         Find contacts by name
-        <input>
-          {/* id={inputID}
-          type="text" value={filter}
-          name="filter" onChange={onFilter} */}
-        </input>
+        <input
+          id={inputID}
+          type="text"
+          value={filter}
+          name="filter"
+          onChange={onFilter}
+        />
       </label>
     </div>
   );

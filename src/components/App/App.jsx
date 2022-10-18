@@ -4,6 +4,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
 import { nanoid } from 'nanoid';
+import { Wrap, Title, MainTitle } from 'components/App/App.styled';
 
 export class App extends Component {
   state = {
@@ -23,7 +24,6 @@ export class App extends Component {
       contact => contact.name.toLowerCase() === nameToLowerCase
     );
     const contact = { id: nanoid(), name, number };
-    // console.log(contact);
     if (!nameTransform) {
       this.setState(prevState => ({
         contacts: [contact, ...prevState.contacts],
@@ -34,21 +34,36 @@ export class App extends Component {
 
     resetForm();
   };
+
   handleFilter = event => {
     this.setState({
       filter: event.currentTarget.value,
     });
   };
 
+  filterContacts = () => {
+    const contactToLowerCase = this.state.filter.toLowerCase();
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(contactToLowerCase)
+    );
+  };
+  onDeleteContact = contactID => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactID),
+    }));
+  };
   render() {
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Wrap>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm onSubmit={this.contactsHandleSubmit} />
-        <h2>Contacts</h2>
+        <Title>Contacts</Title>
         <Filter filter={this.state.filter} onFilter={this.handleFilter} />
-        <ContactList contacts={this.state.contacts} />
-      </div>
+        <ContactList
+          contacts={this.filterContacts}
+          onDeleteContact={this.onDeleteContact}
+        />
+      </Wrap>
     );
   }
 }

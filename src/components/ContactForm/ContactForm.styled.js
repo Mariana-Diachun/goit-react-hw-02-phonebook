@@ -1,7 +1,61 @@
 import styled from 'styled-components';
-import { Formik, Form, Field } from 'formik';
+import { Form, Field, ErrorMessage } from 'formik';
+
+export const FormWrap = styled(Form)`
+  border: 1px solid black;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const Input = styled(Field)`
-  font-size: 17px;
+  box-sizing: border-box;
+  width: 300px;
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  outline: none;
+  &:hover,
+  &:focus {
+    border-color: red;
+  }
+  padding: 2px;
+  margin-top: 10px;
+`;
+
+export const Label = styled.label`
+  box-sizing: border-box;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.17;
+  letter-spacing: 0.01em;
+  margin-top: 10px;
   color: red;
+`;
+
+export const Alert = styled(ErrorMessage)`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.88;
+
+  letter-spacing: 0.06em;
+  color: black;
+`;
+
+export const Button = styled.button`
+  border: none;
+  margin-top: 30px;
+  padding: 5px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.88;
+
+  letter-spacing: 0.06em;
+  background-color: rgba(33, 33, 33, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  &:hover,
+  &:focus {
+    background-color: red;
+  }
+  cursor: pointer;
+  width: 100px;
 `;

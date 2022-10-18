@@ -1,5 +1,6 @@
-import { Formik, Form, ErrorMessage } from 'formik';
-import { Input } from './ContactForm.styled';
+import PropTypes from 'prop-types';
+import { Formik } from 'formik';
+import { Input, FormWrap, Label, Button, Alert } from './ContactForm.styled';
 import schema from 'validation/validation';
 import { nanoid } from 'nanoid';
 
@@ -17,19 +18,23 @@ export const ContactForm = ({ onSubmit }) => {
       validationSchema={schema}
       onSubmit={onSubmit}
     >
-      <Form autoComplete="off">
-        <label htmlFor={nameID}>
+      <FormWrap autoComplete="off">
+        <Label htmlFor={nameID}>
           Name
           <Input type="text" name="name" id={nameID} />
-          <ErrorMessage name="name" compononet="p" />
-        </label>
-        <label htmlFor={numberID}>
+          <Alert name="name" compononet="span" />
+        </Label>
+        <Label htmlFor={numberID}>
           Number
           <Input type="tel" name="number" id={numberID} />
-          <ErrorMessage name="number" compononet="p" />
-        </label>
-        <button type="submit">Add contact</button>
-      </Form>
+          <Alert name="number" compononet="span" />
+        </Label>
+        <Button type="submit">Add contact</Button>
+      </FormWrap>
     </Formik>
   );
+};
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
