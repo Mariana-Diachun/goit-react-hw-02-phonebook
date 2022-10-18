@@ -10,7 +10,7 @@ export const FormWrap = styled(Form)`
 
 export const Input = styled(Field)`
   box-sizing: border-box;
-  width: 300px;
+  width: 220px;
   border: 1px solid rgba(33, 33, 33, 0.2);
   outline: none;
   &:hover,
@@ -18,26 +18,27 @@ export const Input = styled(Field)`
     border-color: red;
   }
   padding: 2px;
-  margin-top: 10px;
 `;
 
 export const Label = styled.label`
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.17;
   letter-spacing: 0.01em;
   margin-top: 10px;
-  color: red;
 `;
 
 export const Alert = styled(ErrorMessage)`
   font-weight: 500;
   font-size: 18px;
   line-height: 1.88;
-
   letter-spacing: 0.06em;
-  color: black;
+  color: red;
 `;
 
 export const Button = styled.button`
@@ -47,7 +48,6 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 10px;
   line-height: 1.88;
-
   letter-spacing: 0.06em;
   background-color: rgba(33, 33, 33, 0.2);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);

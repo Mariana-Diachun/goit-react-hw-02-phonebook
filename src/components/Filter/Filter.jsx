@@ -1,19 +1,26 @@
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+import { Box, Label, InputSearch } from 'components/Filter/Filter.styled';
 
 export const Filter = ({ filter, onFilter }) => {
   const inputID = nanoid();
   return (
-    <div>
-      <label htmlFor={inputID}>
-        Find contacts by name
-        <input
+    <Box>
+      <Label htmlFor={inputID}>
+        Find contacts by name:
+        <InputSearch
           id={inputID}
           type="text"
           value={filter}
           name="filter"
           onChange={onFilter}
-        />
-      </label>
-    </div>
+        ></InputSearch>
+      </Label>
+    </Box>
   );
+};
+
+Filter.propTypes = {
+  filter: PropTypes.string.isRequired,
+  onFilter: PropTypes.func.isRequired,
 };

@@ -22,13 +22,13 @@ export const ContactForm = ({ onSubmit }) => {
         <Label htmlFor={nameID}>
           Name
           <Input type="text" name="name" id={nameID} />
-          <Alert name="name" compononet="span" />
         </Label>
+        <Alert name="name" compononet="span" />
         <Label htmlFor={numberID}>
           Number
           <Input type="tel" name="number" id={numberID} />
-          <Alert name="number" compononet="span" />
         </Label>
+        <Alert name="number" compononet="span" />
         <Button type="submit">Add contact</Button>
       </FormWrap>
     </Formik>

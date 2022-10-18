@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const Wrap = styled.div`
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.1);
